@@ -45,7 +45,22 @@ class Agenda {
     }
 
     public static boolean add(Timeslot t) {
-        agenda.add(t);
+        Iterator<Timeslot> iter = agenda.iterator();
+        int i = 0;
+        while(t != null) {
+            if(!iter.hasNext()) {
+                agenda.addLast(t);
+                t = null;
+            }
+            else {
+                Timeslot tmp = iter.next();
+                if(tmp.day >= t.day) {
+                    agenda.add(i, t);
+                    t = null;
+                }
+            }
+            i++;
+        }
         return true;
     }
  
