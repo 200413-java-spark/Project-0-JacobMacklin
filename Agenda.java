@@ -33,8 +33,9 @@ class Agenda {
         
         System.out.println("Input time(HH:MM) of new event: ");
         tmp = input.nextLine();
-        tmp = tmp.substring(0,1) + tmp.substring(3,4);
+        tmp = tmp.substring(0,2) + tmp.substring(3,5);
         int time = Integer.parseInt(tmp);
+        System.out.println(time);   
 
         System.out.println("Input event title and/or notes");
         tmp = input.nextLine();
