@@ -1,0 +1,1 @@
+java -cp target/agenda-0.0.1.jar com.github.jacobmacklin96.agenda.Agenda

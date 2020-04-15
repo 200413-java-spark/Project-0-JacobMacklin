@@ -1,3 +1,5 @@
+package com.github.jacobmacklin96.agenda;
+
 import java.util.Scanner;
 import java.util.*;
 
@@ -24,6 +26,9 @@ class Agenda {
             }
             else if(next.equals("Show all items")) {
                 showAll();
+            }
+            else {
+                System.out.println("Command not recognized.");
             }
         }
 

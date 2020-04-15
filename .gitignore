@@ -2,3 +2,7 @@ Agenda.class
 Timeslot.class
 agenda.csv
 target/*
+.project
+.settings/*
+.vscode/*
+.classpath
