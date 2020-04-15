@@ -27,6 +27,7 @@ class Agenda {
             else if(next.equals("Show all items")) {
                 showAll();
             }
+            else if(next.equals("exit")) {}
             else {
                 System.out.println("Command not recognized.");
             }
@@ -63,7 +64,11 @@ class Agenda {
             else {
                 Timeslot tmp = iter.next();
                 if(tmp.day >= t.day) {
-                    agenda.add(i, t);
+                    if(tmp.day == t.day && tmp.time < t.time) {
+                        agenda.add(i+1, t);
+                    } else {
+                        agenda.add(i, t);
+                    }
                     t = null;
                 }
             }
@@ -74,7 +79,11 @@ class Agenda {
  
     public static void showNext() {
         Timeslot t = agenda.getFirst();
-        System.out.print("Your next agenda item is at: " + (t.time/100) + ":" + (t.time % 100));
+        if(t.time % 100 < 10) {
+            System.out.print("Your next agenda item is at: " + (t.time/100) + ":0" + (t.time % 100));
+        } else {
+            System.out.print("Your next agenda item is at: " + (t.time/100) + ":" + (t.time % 100));
+        }
         System.out.println(" on " + (t.day/100) + "/" + (t.day%100));
         System.out.println(t.activity);
     }
@@ -83,7 +92,11 @@ class Agenda {
         Iterator<Timeslot> iter = agenda.iterator();
         while(iter.hasNext()) {
             Timeslot t = iter.next();
-            System.out.print("Your next agenda item is at: " + (t.time/100) + ":" + (t.time % 100));
+            if(t.time % 100 < 10) {
+                System.out.print("Your next agenda item is at: " + (t.time/100) + ":0" + (t.time % 100));
+            } else {
+                System.out.print("Your next agenda item is at: " + (t.time/100) + ":" + (t.time % 100));
+            }
             System.out.println(" on " + (t.day/100) + "/" + (t.day%100));
             System.out.println(t.activity);
         }
