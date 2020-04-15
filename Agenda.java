@@ -19,8 +19,11 @@ class Agenda {
                     System.out.println("Failed to add new event");
                 }
             }
-            if(next.equals("Next agenda item")) {
+            else if(next.equals("Next agenda item")) {
                 showNext();
+            }
+            else if(next.equals("Show all items")) {
+                showAll();
             }
         }
 
@@ -70,6 +73,16 @@ class Agenda {
         System.out.println(" on " + (t.day/100) + "/" + (t.day%100));
         System.out.println(t.activity);
     }
+
+    public static void showAll() {
+        Iterator<Timeslot> iter = agenda.iterator();
+        while(iter.hasNext()) {
+            Timeslot t = iter.next();
+            System.out.print("Your next agenda item is at: " + (t.time/100) + ":" + (t.time % 100));
+            System.out.println(" on " + (t.day/100) + "/" + (t.day%100));
+            System.out.println(t.activity);
+        }
+    }
 }
 
 class Timeslot {
@@ -84,6 +97,7 @@ class Timeslot {
     }
 
     public Timeslot() {
+        this.day = 0;
         this.time = 0;
         this.activity = "";
     }
