@@ -54,6 +54,15 @@ class Agenda {
         return complete;
     }
 
+    public static Timeslot presetParse(String d, String t, String activity) {
+        d = d.substring(0,2) + d.substring(3, 5);
+        int date = Integer.parseInt(d);
+        t = t.substring(0,2) + t.substring(3, 5);
+        int time = Integer.parseInt(t);
+        Timeslot complete = new Timeslot(date, time, activity);
+        return complete;
+    }
+
     public static boolean add(Timeslot t, LinkedList<Timeslot> agenda) {
         Iterator<Timeslot> iter = agenda.iterator();
         int i = 0;
@@ -78,19 +87,33 @@ class Agenda {
         return true;
     }
  
-    public static void showNext(LinkedList<Timeslot> agenda) {
+    public static ArrayList<String> showNext(LinkedList<Timeslot> agenda) {
+        ArrayList<String> list = new ArrayList<String>();
         Timeslot t = agenda.getFirst();
-        System.out.println("Your next agenda item is at: " + t.timeDateToString());
-        System.out.println(t.activity);
+        list.add("Your next agenda item is at: " + t.timeDateToString());
+        list.add(t.activity);
+        printStrings(list);
+        return list;
+
     }
 
-    public static void showAll(LinkedList<Timeslot> agenda) {
+    public static ArrayList<String> showAll(LinkedList<Timeslot> agenda) {
+        ArrayList<String> list = new ArrayList<String>();
         Iterator<Timeslot> iter = agenda.iterator();
         while(iter.hasNext()) {
             Timeslot t = iter.next();
-            System.out.println("Your next agenda item is at: " + t.timeDateToString());
-            System.out.println(t.activity);
+            list.add("Your next agenda item is at: " + t.timeDateToString());
+            list.add(t.activity);
         }
+        printStrings(list);
+        return list;
+    }
+
+    private static void printStrings(ArrayList<String> list) {
+        for (String string : list) {
+            System.out.println(string);
+        }
+        return;
     }
 }
 
