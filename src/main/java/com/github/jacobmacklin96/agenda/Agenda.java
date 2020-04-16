@@ -4,8 +4,9 @@ import java.util.Scanner;
 import java.util.*;
 
 class Agenda {
-    static LinkedList<Timeslot> agenda = new LinkedList<Timeslot>();
+    
     public static void main(String args[]) {
+        LinkedList<Timeslot> agenda = new LinkedList<Timeslot>();
         String next = "";
         Scanner input = new Scanner(System.in);
 
@@ -13,7 +14,7 @@ class Agenda {
             next = input.nextLine();
             if(next.equals("add")) {
                 Timeslot nextAddition = inquiry(input);
-                boolean success = add(nextAddition);
+                boolean success = add(nextAddition, agenda);
                 if(success == true){
                     System.out.println("Successfully added new event");
                 } 
@@ -22,10 +23,10 @@ class Agenda {
                 }
             }
             else if(next.equals("Next agenda item")) {
-                showNext();
+                showNext(agenda);
             }
             else if(next.equals("Show all items")) {
-                showAll();
+                showAll(agenda);
             }
             else if(next.equals("exit")) {}
             else {
@@ -53,7 +54,7 @@ class Agenda {
         return complete;
     }
 
-    public static boolean add(Timeslot t) {
+    public static boolean add(Timeslot t, LinkedList<Timeslot> agenda) {
         Iterator<Timeslot> iter = agenda.iterator();
         int i = 0;
         while(t != null) {
@@ -77,27 +78,17 @@ class Agenda {
         return true;
     }
  
-    public static void showNext() {
+    public static void showNext(LinkedList<Timeslot> agenda) {
         Timeslot t = agenda.getFirst();
-        if(t.time % 100 < 10) {
-            System.out.print("Your next agenda item is at: " + (t.time/100) + ":0" + (t.time % 100));
-        } else {
-            System.out.print("Your next agenda item is at: " + (t.time/100) + ":" + (t.time % 100));
-        }
-        System.out.println(" on " + (t.day/100) + "/" + (t.day%100));
+        System.out.println("Your next agenda item is at: " + t.timeDateToString());
         System.out.println(t.activity);
     }
 
-    public static void showAll() {
+    public static void showAll(LinkedList<Timeslot> agenda) {
         Iterator<Timeslot> iter = agenda.iterator();
         while(iter.hasNext()) {
             Timeslot t = iter.next();
-            if(t.time % 100 < 10) {
-                System.out.print("Your next agenda item is at: " + (t.time/100) + ":0" + (t.time % 100));
-            } else {
-                System.out.print("Your next agenda item is at: " + (t.time/100) + ":" + (t.time % 100));
-            }
-            System.out.println(" on " + (t.day/100) + "/" + (t.day%100));
+            System.out.println("Your next agenda item is at: " + t.timeDateToString());
             System.out.println(t.activity);
         }
     }
@@ -118,5 +109,15 @@ class Timeslot {
         this.day = 0;
         this.time = 0;
         this.activity = "";
+    }
+
+    public String timeDateToString() {
+        String s = "";
+        if(this.time % 100 < 10) {
+            s = (this.time/100) + ":0" + (this.time % 100) + " on " + (this.day/100) + "/" + (this.day%100);
+        } else {
+            s = (this.time/100) + ":" + (this.time % 100) + " on " + (this.day/100) + "/" + (this.day%100);
+        }
+        return s;
     }
 }
