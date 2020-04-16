@@ -52,7 +52,9 @@ public class AgendaTest {
         String expected = expectedString.toString();
 
         LinkedList<Timeslot> agenda = new LinkedList<Timeslot>();
-        Timeslot t = new Timeslot(0225, 2208, "i1");
+        int day = 0225;
+        int time = 2208;
+        Timeslot t = new Timeslot(day, time, "i1");
         Agenda.add(t, agenda);
         Agenda.showNext(agenda);
 
