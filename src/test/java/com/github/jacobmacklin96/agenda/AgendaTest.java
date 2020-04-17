@@ -24,43 +24,6 @@ public class AgendaTest {
     public void cleanUpStreams() {
         System.setOut(null);
     }
-/*
-    @Test
-    public void prints1AfterAdding1() {
-        LinkedList<Timeslot> agenda = new LinkedList<Timeslot>();
-        Timeslot t = new Timeslot(0223, 2208, "i1");
-        Agenda.add(t, agenda);
-
-        
-        
-
-        Agenda.showNext(agenda);
-
-        // String expected = "Your next agenda item is at: 22:08 on 2/23\r\ni1";
-
-        assertEquals("Your next agenda item is at: 22:08 on 2/23\r\ni1", output.toString());
-    } 
-*/
-/*
-    @Test
-    public void prints1AfterAdding1() {
-        StringWriter expectedString = new StringWriter();
-        PrintWriter printWriter = new PrintWriter(expectedString);
-        
-        printWriter.println("Your next agenda item is at: 22:08 on 2/25");
-        printWriter.println("i1");
-        String expected = expectedString.toString();
-
-        LinkedList<Timeslot> agenda = new LinkedList<Timeslot>();
-        int day = 0225;
-        int time = 2208;
-        Timeslot t = new Timeslot(day, time, "i1");
-        Agenda.add(t, agenda);
-        Agenda.showNext(agenda);
-
-        assertEquals(expected, output.toString());
-    }
-*/
 
     @Test
     public void check1AfterAdding1() {
@@ -82,7 +45,6 @@ public class AgendaTest {
 
         for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i), actual.get(i));
-            System.out.println(actual.get(i));
         }
 
     }
@@ -106,7 +68,73 @@ public class AgendaTest {
 
         for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i), actual.get(i));
-            System.out.println(actual.get(i));
+        }
+
+    }
+
+    @Test
+    public void check4AfterAdding4() {
+        ArrayList<String> expected = new ArrayList<String>();
+        expected.add("Your next agenda item is at: 22:08 on 2/25");
+        expected.add("i1");
+        expected.add("Your next agenda item is at: 3:45 on 5/7");
+        expected.add("i3");
+        expected.add("Your next agenda item is at: 13:10 on 10/3");
+        expected.add("i4");
+        expected.add("Your next agenda item is at: 10:19 on 10/12");
+        expected.add("i2");
+        
+        
+
+        LinkedList<Timeslot> agenda = new LinkedList<Timeslot>();
+        Timeslot t = Agenda.presetParse("02/25", "22:08", "i1");
+        Agenda.add(t, agenda);
+        t = Agenda.presetParse("10/12", "10:19", "i2");
+        Agenda.add(t, agenda);
+        t = Agenda.presetParse("05/07", "03:45", "i3");
+        Agenda.add(t, agenda);
+        t = Agenda.presetParse("10/03", "13:10", "i4");
+        Agenda.add(t, agenda);
+        ArrayList<String> actual = new ArrayList<String>();
+        actual = Agenda.showAll(agenda);
+
+        for (int i = 0; i < expected.size(); i++) {
+            assertEquals(expected.get(i), actual.get(i));
+        }
+    }
+
+    @Test
+    public void check5AfterAdding5ForTimeSort() {
+
+        ArrayList<String> expected = new ArrayList<String>();
+        expected.add("Your next agenda item is at: 8:30 on 2/25");
+        expected.add("i4");
+        expected.add("Your next agenda item is at: 10:19 on 2/25");
+        expected.add("i2");
+        expected.add("Your next agenda item is at: 21:08 on 2/25");
+        expected.add("i3");
+        expected.add("Your next agenda item is at: 22:08 on 2/25");
+        expected.add("i1");
+        expected.add("Your next agenda item is at: 23:10 on 2/25");
+        expected.add("i5");
+        
+
+        LinkedList<Timeslot> agenda = new LinkedList<Timeslot>();
+        Timeslot t = Agenda.presetParse("02/25", "22:08", "i1");
+        Agenda.add(t, agenda);
+        t = Agenda.presetParse("02/25", "10:19", "i2");
+        Agenda.add(t, agenda);
+        t = Agenda.presetParse("02/25", "21:08", "i3");
+        Agenda.add(t, agenda);
+        t = Agenda.presetParse("02/25", "08:30", "i4");
+        Agenda.add(t, agenda);
+        t = Agenda.presetParse("02/25", "23:10", "i5");
+        Agenda.add(t, agenda);
+        ArrayList<String> actual = new ArrayList<String>();
+        actual = Agenda.showAll(agenda);
+
+        for (int i = 0; i < expected.size(); i++) {
+            assertEquals(expected.get(i), actual.get(i));
         }
 
     }
