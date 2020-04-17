@@ -74,12 +74,15 @@ class Agenda {
             else {
                 Timeslot tmp = iter.next();
                 if(tmp.day >= t.day) {
-                    if(tmp.day == t.day && tmp.time < t.time) {
-                        agenda.add(i+1, t);
-                    } else {
+                    if(tmp.day == t.day && tmp.time >= t.time) {
                         agenda.add(i, t);
+                        t = null;
                     }
-                    t = null;
+                    else if(tmp.day != t.day) {
+                        agenda.add(i, t);
+                        t = null;
+                    }
+                    
                 }
             }
             i++;
