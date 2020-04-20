@@ -25,13 +25,9 @@ public class AgendaTest {
         System.setOut(null);
     }
 
+    // Test to confirm that a single item is added to the data structure as expected
     @Test
     public void check1AfterAdding1() {
-        /*
-        String[] expected = new String[2];
-        expected[0] = "Your next agenda item is at: 22:08 on 2/25";
-        expected[1] = "i1";
-        */
         ArrayList<String> expected = new ArrayList<String>();
         expected.add("Your next agenda item is at: 22:08 on 2/25");
         expected.add("i1");
@@ -49,6 +45,7 @@ public class AgendaTest {
 
     }
 
+    // Test to confirm that two items are added and sorted as expected by day
     @Test
     public void check2AfterAdding2() {
 
@@ -72,6 +69,7 @@ public class AgendaTest {
 
     }
 
+    // Test to confirm that four items are added and sorted as expected
     @Test
     public void check4AfterAdding4() {
         ArrayList<String> expected = new ArrayList<String>();
@@ -103,6 +101,7 @@ public class AgendaTest {
         }
     }
 
+    // Test to confirm that five items are added and sorted by time and day as expected
     @Test
     public void check5AfterAdding5ForTimeSort() {
 
