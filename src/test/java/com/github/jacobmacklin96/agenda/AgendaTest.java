@@ -10,6 +10,7 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.*;
+import com.github.jacobmacklin96.agenda.logistics.*;
 
 public class AgendaTest {
 
@@ -33,11 +34,11 @@ public class AgendaTest {
         expected.add("i1");
 
         LinkedList<Timeslot> agenda = new LinkedList<Timeslot>();
-        Timeslot t = Agenda.presetParse("02/25", "22:08", "i1");
-        Agenda.add(t, agenda);
+        Timeslot t = AgendaLogic.presetParse("02/25", "22:08", "i1");
+        AgendaLogic.add(t, agenda);
 
         ArrayList<String> actual = new ArrayList<String>();
-        actual = Agenda.showNext(agenda);
+        actual = AgendaLogic.showNext(agenda);
 
         for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i), actual.get(i));
@@ -56,12 +57,12 @@ public class AgendaTest {
         expected.add("i2");
 
         LinkedList<Timeslot> agenda = new LinkedList<Timeslot>();
-        Timeslot t = Agenda.presetParse("02/25", "22:08", "i1");
-        Agenda.add(t, agenda);
-        t = Agenda.presetParse("10/12", "10:19", "i2");
-        Agenda.add(t, agenda);
+        Timeslot t = AgendaLogic.presetParse("02/25", "22:08", "i1");
+        AgendaLogic.add(t, agenda);
+        t = AgendaLogic.presetParse("10/12", "10:19", "i2");
+        AgendaLogic.add(t, agenda);
         ArrayList<String> actual = new ArrayList<String>();
-        actual = Agenda.showAll(agenda);
+        actual = AgendaLogic.showAll(agenda);
 
         for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i), actual.get(i));
@@ -85,16 +86,16 @@ public class AgendaTest {
         
 
         LinkedList<Timeslot> agenda = new LinkedList<Timeslot>();
-        Timeslot t = Agenda.presetParse("02/25", "22:08", "i1");
-        Agenda.add(t, agenda);
-        t = Agenda.presetParse("10/12", "10:19", "i2");
-        Agenda.add(t, agenda);
-        t = Agenda.presetParse("05/07", "03:45", "i3");
-        Agenda.add(t, agenda);
-        t = Agenda.presetParse("10/03", "13:10", "i4");
-        Agenda.add(t, agenda);
+        Timeslot t = AgendaLogic.presetParse("02/25", "22:08", "i1");
+        AgendaLogic.add(t, agenda);
+        t = AgendaLogic.presetParse("10/12", "10:19", "i2");
+        AgendaLogic.add(t, agenda);
+        t = AgendaLogic.presetParse("05/07", "03:45", "i3");
+        AgendaLogic.add(t, agenda);
+        t = AgendaLogic.presetParse("10/03", "13:10", "i4");
+        AgendaLogic.add(t, agenda);
         ArrayList<String> actual = new ArrayList<String>();
-        actual = Agenda.showAll(agenda);
+        actual = AgendaLogic.showAll(agenda);
 
         for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i), actual.get(i));
@@ -119,18 +120,18 @@ public class AgendaTest {
         
 
         LinkedList<Timeslot> agenda = new LinkedList<Timeslot>();
-        Timeslot t = Agenda.presetParse("02/25", "22:08", "i1");
-        Agenda.add(t, agenda);
-        t = Agenda.presetParse("02/25", "10:19", "i2");
-        Agenda.add(t, agenda);
-        t = Agenda.presetParse("02/25", "21:08", "i3");
-        Agenda.add(t, agenda);
-        t = Agenda.presetParse("02/25", "08:30", "i4");
-        Agenda.add(t, agenda);
-        t = Agenda.presetParse("02/25", "23:10", "i5");
-        Agenda.add(t, agenda);
+        Timeslot t = AgendaLogic.presetParse("02/25", "22:08", "i1");
+        AgendaLogic.add(t, agenda);
+        t = AgendaLogic.presetParse("02/25", "10:19", "i2");
+        AgendaLogic.add(t, agenda);
+        t = AgendaLogic.presetParse("02/25", "21:08", "i3");
+        AgendaLogic.add(t, agenda);
+        t = AgendaLogic.presetParse("02/25", "08:30", "i4");
+        AgendaLogic.add(t, agenda);
+        t = AgendaLogic.presetParse("02/25", "23:10", "i5");
+        AgendaLogic.add(t, agenda);
         ArrayList<String> actual = new ArrayList<String>();
-        actual = Agenda.showAll(agenda);
+        actual = AgendaLogic.showAll(agenda);
 
         for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i), actual.get(i));
