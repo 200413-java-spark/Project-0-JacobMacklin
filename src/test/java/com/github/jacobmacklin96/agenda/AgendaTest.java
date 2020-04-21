@@ -38,7 +38,7 @@ public class AgendaTest {
         AgendaLogic.add(t, agenda);
 
         ArrayList<String> actual = new ArrayList<String>();
-        actual = AgendaLogic.showNext(agenda);
+        actual = AgendaLogic.showNext(agenda, false);
 
         for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i), actual.get(i));
@@ -62,7 +62,7 @@ public class AgendaTest {
         t = AgendaLogic.presetParse("10/12", "10:19", "i2");
         AgendaLogic.add(t, agenda);
         ArrayList<String> actual = new ArrayList<String>();
-        actual = AgendaLogic.showAll(agenda);
+        actual = AgendaLogic.showAll(agenda, false);
 
         for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i), actual.get(i));
@@ -95,7 +95,7 @@ public class AgendaTest {
         t = AgendaLogic.presetParse("10/03", "13:10", "i4");
         AgendaLogic.add(t, agenda);
         ArrayList<String> actual = new ArrayList<String>();
-        actual = AgendaLogic.showAll(agenda);
+        actual = AgendaLogic.showAll(agenda, false);
 
         for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i), actual.get(i));
@@ -131,7 +131,7 @@ public class AgendaTest {
         t = AgendaLogic.presetParse("02/25", "23:10", "i5");
         AgendaLogic.add(t, agenda);
         ArrayList<String> actual = new ArrayList<String>();
-        actual = AgendaLogic.showAll(agenda);
+        actual = AgendaLogic.showAll(agenda, false);
 
         for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i), actual.get(i));
