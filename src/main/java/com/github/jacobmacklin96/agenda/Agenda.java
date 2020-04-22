@@ -36,6 +36,9 @@ class Agenda {
                 output = AgendaLogic.showAll(agenda, false);
                 FileIO.write(output);
             }
+            else if(next.equals("read from file")) {
+                FileIO.read(agenda);
+            }
             else if(next.equals("exit")) {}
             else {
                 System.out.println("Command not recognized. Use 'help' for command list.");
