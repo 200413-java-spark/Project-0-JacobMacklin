@@ -66,19 +66,21 @@ public class AgendaLogic {
     }
  
     // Prints and returns the next agenda time/date and item(Timeslot) associated.
-    public static ArrayList<String> showNext(LinkedList<Timeslot> agenda) {
+    public static ArrayList<String> showNext(LinkedList<Timeslot> agenda, boolean consoleOutput) {
         ArrayList<String> list = new ArrayList<String>();
         Timeslot t = agenda.getFirst();
         list.add("Your next agenda item is at: " + t.timeDateToString());
         list.add(t.activity);
-        printStrings(list);
+        if(consoleOutput == true) {
+            printStrings(list);
+        }
         return list;
 
     }
 
     // Prints to console and returns an ArrayList of all items in the agenda
     // ArrayList example.. list[0] = String for agenda time/date, list[1] = item associated with that time/date..etc.
-    public static ArrayList<String> showAll(LinkedList<Timeslot> agenda) {
+    public static ArrayList<String> showAll(LinkedList<Timeslot> agenda, boolean consoleOutput) {
         ArrayList<String> list = new ArrayList<String>();
         Iterator<Timeslot> iter = agenda.iterator();
         while(iter.hasNext()) {
@@ -86,7 +88,9 @@ public class AgendaLogic {
             list.add("Your next agenda item is at: " + t.timeDateToString());
             list.add(t.activity);
         }
-        printStrings(list);
+        if(consoleOutput == true){
+            printStrings(list);
+        }
         return list;
     }
 
