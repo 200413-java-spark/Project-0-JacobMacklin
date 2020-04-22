@@ -33,34 +33,36 @@ public class FileIO {
 
         try(FileReader in = new FileReader(file);
             BufferedReader reader = new BufferedReader(in);) {
-            String line = reader.readLine();
-            String[] outputs = new String[3];
+            String line = "";
+            String[] outputs = new String[3];    
+            while((line = reader.readLine()) != null) {
+            
 
-            String[] s = new String[3];
-            s = line.split(":");
-            outputs[0] = s[1].substring(s[1].length()-2, s[1].length());
-            if(outputs[0].substring(0,1).equals(" ")) {
-                outputs[0] = "0" + outputs[0].substring(1,2);
-            }
-            outputs[0] += ":" + s[2].substring(0,2);
-            
-            s = s[2].split("/");
-            outputs[1] = s[0].substring(s[0].length()-2, s[0].length());
-            if(outputs[1].substring(0,1).equals(" ")) {
-                outputs[1] = "0" + outputs[1].substring(1,2);
-            }
-            outputs[1] += "/";
-            if(s[1].length() == 1) {
-                outputs[1] += "0" + s[1];
-            } else {
-                outputs[1] += s[1];
-            }
-            
-            outputs[2] = reader.readLine();
+                String[] s = new String[3];
+                s = line.split(":");
+                outputs[0] = s[1].substring(s[1].length()-2, s[1].length());
+                if(outputs[0].substring(0,1).equals(" ")) {
+                    outputs[0] = "0" + outputs[0].substring(1,2);
+                }
+                outputs[0] += ":" + s[2].substring(0,2);
+                
+                s = s[2].split("/");
+                outputs[1] = s[0].substring(s[0].length()-2, s[0].length());
+                if(outputs[1].substring(0,1).equals(" ")) {
+                    outputs[1] = "0" + outputs[1].substring(1,2);
+                }
+                outputs[1] += "/";
+                if(s[1].length() == 1) {
+                    outputs[1] += "0" + s[1];
+                } else {
+                    outputs[1] += s[1];
+                }
+                
+                outputs[2] = reader.readLine();
 
-            Timeslot t = AgendaLogic.presetParse(outputs[1], outputs[0], outputs[2]);
-            AgendaLogic.add(t, agenda);
-            
+                Timeslot t = AgendaLogic.presetParse(outputs[1], outputs[0], outputs[2]);
+                AgendaLogic.add(t, agenda);
+            }
 
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
