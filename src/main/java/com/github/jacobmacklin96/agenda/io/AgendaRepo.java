@@ -13,7 +13,7 @@ public class AgendaRepo {
 
     }
 
-    public void read(LinkedList<Timeslot> agenda) {
+    public static void read(LinkedList<Timeslot> agenda) {
         try(Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/agendadb", "agendadb",
             "agendadb");) {
             Statement statement = conn.createStatement();

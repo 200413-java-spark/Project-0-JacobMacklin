@@ -39,6 +39,9 @@ class Agenda {
             else if(next.equals("read from file")) {
                 FileIO.read(agenda);
             }
+            else if(next.equals("read from sql server")) {
+                AgendaRepo.read(agenda);
+            }
             else if(next.equals("exit")) {}
             else {
                 System.out.println("Command not recognized. Use 'help' for command list.");
