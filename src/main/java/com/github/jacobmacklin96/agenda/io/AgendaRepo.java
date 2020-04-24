@@ -6,16 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
+
 import com.github.jacobmacklin96.agenda.logistics.*;
 
 public class AgendaRepo {
+    private static SqlDataSource dataSource;
+
     public void insert() {
 
     }
 
     public static void read(LinkedList<Timeslot> agenda) {
-        try(Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/agendadb", "agendadb",
-            "agendadb");) {
+        try(Connection conn = dataSource.getConnection();) {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery("select * from agenda;");
             while(rs.next()) {
