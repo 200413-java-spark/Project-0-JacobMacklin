@@ -36,8 +36,7 @@ public class FileIO {
             String line = "";
             String[] outputs = new String[3];    
             while((line = reader.readLine()) != null) {
-            
-
+        
                 String[] s = new String[3];
                 s = line.split(":");
                 outputs[0] = s[1].substring(s[1].length()-2, s[1].length());
