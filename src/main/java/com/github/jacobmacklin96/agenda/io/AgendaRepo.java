@@ -1,19 +1,40 @@
 package com.github.jacobmacklin96.agenda.io;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.util.LinkedList;
+import java.util.Iterator;
 
 import com.github.jacobmacklin96.agenda.logistics.*;
 
 public class AgendaRepo {
     private static SqlDataSource dataSource;
 
-    public void insert() {
+    public static void write(LinkedList<Timeslot> agenda) {
+        String s[] = new String[3];
 
+        dataSource = SqlDataSource.getInstance();
+        String sql = "insert into agenda(day, clock, item) values(?, ?, ?)";
+
+        try(Connection conn = dataSource.getConnection();
+                PreparedStatement statement = conn.prepareStatement(sql);) {
+            Iterator<Timeslot> iter = agenda.iterator();
+            while(iter.hasNext()) {
+                Timeslot t = iter.next();
+                s = t.toSqlStrings()
+                statement.setString(1, s[0]);
+                statement.setString(2, s[1]);
+                statement.setString(3, s[2]);
+                statement.addBatch();
+            }
+            statement.executeBatch();
+
+        } catch (SQLException e) {
+            //TODO: handle exception
+        }
     }
 
     public static void read(LinkedList<Timeslot> agenda) {
@@ -54,8 +75,6 @@ public class AgendaRepo {
                 args[1] += ":" + tmp[1];
 
                 args[2] = rs.getString("item");
-		System.out.println(args[0]);
-		System.out.println(args[1]);
                 Timeslot t = AgendaLogic.presetParse(args[0], args[1], args[2]);
                 agenda.add(t);
             }

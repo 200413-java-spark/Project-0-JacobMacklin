@@ -31,13 +31,16 @@ class Agenda {
                 System.out.println("'show all items' : Print all items currently saved in agenda");
                 System.out.println("'exit' : Quit and exit program.");
             }
-            else if(next.equals("save to file")){
+            else if(next.equals("write to file")){
                 ArrayList<String> output = new ArrayList<String>();
                 output = AgendaLogic.showAll(agenda, false);
                 FileIO.write(output);
             }
             else if(next.equals("read from file")) {
                 FileIO.read(agenda);
+            }
+            else if(next.equals("write to sql server")) {
+                AgendaRepo.write(agenda);
             }
             else if(next.equals("read from sql server")) {
                 AgendaRepo.read(agenda);
