@@ -17,6 +17,12 @@ public class AgendaRepo {
     }
 
     public static void read(LinkedList<Timeslot> agenda) {
+        dataSource = SqlDataSource.getInstance();
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (java.lang.ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
         try(Connection conn = dataSource.getConnection();) {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery("select * from agenda;");
