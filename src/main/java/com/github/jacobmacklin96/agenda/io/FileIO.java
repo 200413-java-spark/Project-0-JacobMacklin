@@ -13,23 +13,31 @@ import com.github.jacobmacklin96.agenda.logistics.*;
 
 public class FileIO {
 
-    static File file = new File("agenda.txt");
+    File file;
 
-    public static void write(ArrayList<String> agenda) {
+    public FileIO() {
+        file = new File("agenda.txt");
+    }
+
+    public FileIO(String s) {
+        file = new File(s);
+    }
+
+    public void write(ArrayList<String> agenda) {
         
-        try(PrintWriter writer = new PrintWriter(file);) {
+        try(PrintWriter writer = new PrintWriter(this.file);) {
             for (String string : agenda) {
                 writer.println(string);
             }
-
             writer.close();
+            System.out.println("File write successful");
         } catch(FileNotFoundException e) {
             System.out.println("File not found");
         }
  
     }
 
-    public static void read(LinkedList<Timeslot> agenda) {
+    public void read(LinkedList<Timeslot> agenda) {
 
         try(FileReader in = new FileReader(file);
             BufferedReader reader = new BufferedReader(in);) {
@@ -62,6 +70,8 @@ public class FileIO {
                 Timeslot t = AgendaLogic.presetParse(outputs[1], outputs[0], outputs[2]);
                 AgendaLogic.add(t, agenda);
             }
+
+            System.out.println("Successfully read file into agenda");
 
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
