@@ -39,9 +39,9 @@ public class AgendaRepo {
                 }
                 args[0] += "/";
                 if(tmp[1].length() == 2) {
-                    args[0] = tmp[1];
+                    args[0] += tmp[1];
                 } else {
-                    args[0] = "0" + tmp[1];
+                    args[0] += "0" + tmp[1];
                 }
 
                 args[1] = rs.getString("clock");
@@ -54,6 +54,8 @@ public class AgendaRepo {
                 args[1] += ":" + tmp[1];
 
                 args[2] = rs.getString("item");
+		System.out.println(args[0]);
+		System.out.println(args[1]);
                 Timeslot t = AgendaLogic.presetParse(args[0], args[1], args[2]);
                 agenda.add(t);
             }
