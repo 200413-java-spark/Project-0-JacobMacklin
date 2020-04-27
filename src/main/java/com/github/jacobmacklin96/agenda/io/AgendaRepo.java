@@ -24,7 +24,7 @@ public class AgendaRepo {
             Iterator<Timeslot> iter = agenda.iterator();
             while(iter.hasNext()) {
                 Timeslot t = iter.next();
-                s = t.toSqlStrings()
+                s = t.toSqlStrings();
                 statement.setString(1, s[0]);
                 statement.setString(2, s[1]);
                 statement.setString(3, s[2]);
