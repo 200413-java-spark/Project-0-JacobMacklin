@@ -26,18 +26,21 @@ class Agenda {
                 AgendaLogic.showAll(agenda, true);
             }
             else if(next.equals("help")) {
-                System.out.println("'add' : Add a new agenda item by following prompts.");
-                System.out.println("'show next item' : Check the next upcoming agenda item.");
-                System.out.println("'show all items' : Print all items currently saved in agenda");
-                System.out.println("'exit' : Quit and exit program.");
+                help();
             }
             else if(next.equals("write to file")){
                 ArrayList<String> output = new ArrayList<String>();
                 output = AgendaLogic.showAll(agenda, false);
-                FileIO.write(output);
+                System.out.println("Enter file name: (Blank for default=agenda.txt)");
+                next = input.nextLine();
+                FileIO fileIO = fileSetup(next);
+                fileIO.write(output);
             }
             else if(next.equals("read from file")) {
-                FileIO.read(agenda);
+                System.out.println("Enter file name: (Blank for default=agenda.txt)");
+                next = input.nextLine();
+                FileIO fileIO = fileSetup(next);
+                fileIO.read(agenda);
             }
             else if(next.equals("write to sql server")) {
                 AgendaRepo.write(agenda);
@@ -54,5 +57,26 @@ class Agenda {
         input.close();
     }
 
+    public static FileIO fileSetup(String next) {
+        FileIO fileIO;
+        if(next.length() == 0) {
+            fileIO = new FileIO();
+        } else {
+            fileIO = new FileIO(next);
+        }
+        return fileIO;
+    }
+
+    public static void help() {
+        System.out.println("'add' : Add a new agenda item by following prompts.");
+        System.out.println("'show next item' : Check the next upcoming agenda item.");
+        System.out.println("'show all items' : Print all items currently saved in agenda");
+        System.out.println("'exit' : Quit and exit program.");
+        System.out.println("--------IO--------");
+        System.out.println("read from file");
+        System.out.println("write to file");
+        System.out.println("read from sql server");
+        System.out.println("write to sql server");
+    }
     
 }
