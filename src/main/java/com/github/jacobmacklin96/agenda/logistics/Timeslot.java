@@ -26,4 +26,16 @@ public class Timeslot {
         }
         return s;
     }
+
+    public String[] toSqlStrings() {
+        String[] s = new String[3];
+        s[0] = (this.day/100) + "/" + (this.day%100);
+        if(this.time % 100 < 10) {
+            s[1] = (this.time/100) + ":0" + (this.time % 100);
+        } else {
+            s[1] = (this.time/100) + ":" + (this.time % 100);
+        }
+        s[2] = this.activity;
+        return s;
+    }
 }
