@@ -23,6 +23,16 @@ public class FileIO {
         file = new File(s);
     }
 
+    public static FileIO fileSetup(String next) {
+        FileIO fileIO;
+        if(next.length() == 0) {
+            fileIO = new FileIO();
+        } else {
+            fileIO = new FileIO(next);
+        }
+        return fileIO;
+    }
+
     public void write(ArrayList<String> agenda) {
         
         try(PrintWriter writer = new PrintWriter(this.file);) {
