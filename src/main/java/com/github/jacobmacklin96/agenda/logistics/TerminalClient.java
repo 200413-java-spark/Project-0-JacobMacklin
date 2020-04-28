@@ -43,10 +43,10 @@ public class TerminalClient {
                 FileIO fileIO = FileIO.fileSetup(next);
                 fileIO.read(agenda);
             }
-            else if(next.equals("write to sql server")) {
+            else if(next.equals("write to database")) {
                 AgendaRepo.write(agenda);
             }
-            else if(next.equals("read from sql server")) {
+            else if(next.equals("read from database")) {
                 AgendaRepo.read(agenda);
             }
             else if(next.equals("exit")) {}

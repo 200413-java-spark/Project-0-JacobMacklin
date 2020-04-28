@@ -20,7 +20,9 @@ public class AgendaRepo {
         String sql = "insert into agenda(day, clock, item) values(?, ?, ?)";
 
         try(Connection conn = dataSource.getConnection();
-                PreparedStatement statement = conn.prepareStatement(sql);) {
+                PreparedStatement statement = conn.prepareStatement(sql);
+                Statement rmStatement = conn.createStatement();) {
+            rmStatement.execute("delete from agenda;");
             Iterator<Timeslot> iter = agenda.iterator();
             while(iter.hasNext()) {
                 Timeslot t = iter.next();
@@ -31,9 +33,10 @@ public class AgendaRepo {
                 statement.addBatch();
             }
             statement.executeBatch();
+            System.out.println("Successfully wrote to database");
 
         } catch (SQLException e) {
-            //TODO: handle exception
+            System.out.println("Failed to write to database");
         }
     }
 
@@ -78,9 +81,9 @@ public class AgendaRepo {
                 Timeslot t = AgendaLogic.presetParse(args[0], args[1], args[2]);
                 agenda.add(t);
             }
+            System.out.println("Successfully read from database");
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println("Failed to read from database");
         }
 
         return;
