@@ -64,6 +64,22 @@ public class AgendaLogic {
         }
         return;
     }
+
+    public static void remove(LinkedList<Timeslot> agenda, Scanner input) {
+        ArrayList<String> list = showAll(agenda, false);
+        Iterator<String> iter = list.iterator();
+        for (int i = 0; i < (list.size() / 2); i++) {
+            System.out.println(i + " - " + iter.next());
+            System.out.println(i + " - " + iter.next());
+        }
+        System.out.println("Enter index to be removed:");
+        try{
+            agenda.remove(Integer.parseInt(input.nextLine()));
+        } catch(NumberFormatException | StringIndexOutOfBoundsException e) {
+            System.out.println("Input index of item to be removed");
+        }
+
+    }
  
     // Prints and returns the next agenda time/date and item(Timeslot) associated.
     public static ArrayList<String> showNext(LinkedList<Timeslot> agenda, boolean consoleOutput) {

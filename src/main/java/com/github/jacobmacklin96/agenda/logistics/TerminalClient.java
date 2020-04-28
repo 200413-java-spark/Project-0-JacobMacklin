@@ -20,6 +20,9 @@ public class TerminalClient {
                 Timeslot nextAddition = AgendaLogic.inquiry(input);
                 AgendaLogic.add(nextAddition, agenda);
             }
+            else if(next.equals("remove")) {
+                AgendaLogic.remove(agenda, input);
+            }
             else if(next.equals("show next item")) {
                 AgendaLogic.showNext(agenda, true);
             }
