@@ -23,12 +23,12 @@ public class FileIO {
         file = new File(s);
     }
 
-    public static FileIO fileSetup(String next) {
+    public static FileIO fileSetup(String s) {
         FileIO fileIO;
-        if(next.length() == 0) {
+        if(s.length() == 0) {
             fileIO = new FileIO();
         } else {
-            fileIO = new FileIO(next);
+            fileIO = new FileIO(s);
         }
         return fileIO;
     }
